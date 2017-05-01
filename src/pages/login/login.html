@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+  <ion-item class="text" *ngFor="let item of items | async">
+    {{item | json}}
+  </ion-item>
+  </ion-list>
+  <button ion-button id="fb-login">Login With Facebook</button>
+  <button ion-button outline (click)="signInWithFacebook()">Facebook</button>
+</ion-content>
