@@ -1,10 +1,10 @@
 import { Component,ElementRef,OnInit  } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Facebook } from '@ionic-native/facebook'
 // import { NativeStorage } from '@ionic-native/native-storage'
 import { TabsPage } from '../tabs/tabs'
 import { AuthProviders, AuthMethods, AngularFire, FirebaseListObservable } from 'angularfire2';
-
+import { MyApp } from '../../app/app.component'
 /**
  * Generated class for the Login page.
  *
@@ -17,7 +17,6 @@ import { AuthProviders, AuthMethods, AngularFire, FirebaseListObservable } from 
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  items: FirebaseListObservable<any[]>;
   root:any;
   constructor(public navCtrl: NavController,public af: AngularFire, public element: ElementRef) {
     this.element.nativeElement;
@@ -39,8 +38,9 @@ export class LoginPage {
   			picture:response.auth.photoURL
   		};
   		window.localStorage.setItem('user',JSON.stringify(user));
-  		//self.navCtrl.pop();
-      self.navCtrl.push(TabsPage);
+      self.navCtrl.setRoot(TabsPage);
+
+      //app.setRootpage(TabsPage);
   	}).catch(function(error){
   		console.log(error);
   	});

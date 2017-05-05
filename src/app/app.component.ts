@@ -12,18 +12,19 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
-  rootPage: TabsPage;
+  rootPage: any;
 
   constructor(platform: Platform, private Splashscreen: SplashScreen, private statusBar: StatusBar) {
     platform.ready().then(() => {
      let env = this;
+     env.nav.push(TabsPage);
      if(!this.isAlreadyLoggedIn()){
        console.log('not login yet, redirect to login page');
-       env.nav.push(LoginPage);
+       env.nav.setRoot(LoginPage);
        Splashscreen.hide();
      }
      else{
-       env.nav.push(TabsPage);
+       env.nav.setRoot(TabsPage);
        Splashscreen.hide();
      }
       statusBar.styleDefault();
